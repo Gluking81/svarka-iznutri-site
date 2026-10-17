@@ -1,3 +1,4 @@
 User-agent: *
-Disallow: /
-# Staging preview.
+Allow: /
+Disallow: /go/
+Sitemap: https://ipbelova.tech/sitemap.xml
