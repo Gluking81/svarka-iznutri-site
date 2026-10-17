@@ -3,7 +3,7 @@
 body{background:linear-gradient(180deg,#eaf3f4 0%,#f7f8f5 620px);color:#152b38}
 .site-header{background:#102334;border-bottom:1px solid #365264;box-shadow:0 5px 30px #071a2315}
 .brand strong{font-size:1.1rem;font-weight:850;letter-spacing:.035em}
-.brand strong:before{content:"тЧЖ";display:inline-block;color:#f29359;font-size:1.25rem;margin-right:9px}
+.brand strong:before{content:"\25C6";display:inline-block;color:#f29359;font-size:1.25rem;margin-right:9px}
 .brand span{color:#bdd0d7}
 .nav a{color:#d4e1e4}
 .header-telegram{background:#e17b47;color:#102637;border:0;border-radius:100px;font-weight:800}
@@ -42,7 +42,7 @@ body{background:linear-gradient(180deg,#eaf3f4 0%,#f7f8f5 620px);color:#152b38}
 .card-meta{color:#127d90}
 .card-arrow{color:#126f83}
 .question{background:#fff;border-color:#c7e1e5;border-radius:12px}
-.question:before{content:"тЖЧ";color:#2298a4;padding-right:10px}
+.question:before{content:"\2197";color:#2298a4;padding-right:10px}
 .telegram-band{background:linear-gradient(120deg,#132e42,#1f4858);border-top:1px solid #508295}
 .footer{background:#0b202e}
 .aside,.notice,.short-answer,.subtle-commerce,.model-panel,.media-figure,.related-list a,.source-links a,.mini-telegram{border-radius:12px}

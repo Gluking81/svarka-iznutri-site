@@ -26,7 +26,7 @@
 .eyebrow{font-size:.72rem;letter-spacing:.18em}
 .topic-grid{gap:12px;background:transparent;border:0}
 .topic{background:#fff;min-height:167px;border-top:4px solid #263338;position:relative;padding:24px;box-shadow:0 3px 8px #1927290c}
-.topic:after{content:"тЖЧ";position:absolute;top:18px;right:22px;font-size:1.2rem;color:#b3c1be}
+.topic:after{content:"\2197";position:absolute;top:18px;right:22px;font-size:1.2rem;color:#b3c1be}
 .topic:hover{background:#f8ece5;border-color:var(--accent);text-decoration:none}
 .topic span{font-weight:800}
 .topic strong{max-width:245px;font-size:1.32rem;letter-spacing:-.03em}
