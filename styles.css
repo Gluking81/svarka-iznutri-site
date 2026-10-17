@@ -24,3 +24,8 @@
 .prose .media-grid+.media-grid{margin-top:10px}
 @media(max-width:740px){.hero-photo img{height:auto;max-height:390px;aspect-ratio:4/3}.media-grid{grid-template-columns:1fr}.media-grid .media-figure img{aspect-ratio:auto;max-height:520px}.media-feature img{max-height:470px}.content-grid{margin-top:34px}.prose h2{margin-top:40px}.source-links a{font-size:.88rem}}
 @media(max-width:740px){.media-infographic{overflow-x:auto;overscroll-behavior-inline:contain}.media-infographic img{width:700px;max-width:none;max-height:none}.media-infographic figcaption{width:700px}}
+
+.card-photo-text{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;background:linear-gradient(135deg,#1e292d,#4c6063);color:#fff;padding:22px 26px}
+.card-photo-text strong{font-size:clamp(1.4rem,2.2vw,2rem);line-height:1.15;letter-spacing:.03em}
+.card-photo-text .card-visual-kicker{font-size:.7rem;font-weight:700;letter-spacing:.14em;color:#ecb292}
+.card-photo-text>span:last-child{font-size:.84rem;color:#d7e1df}
