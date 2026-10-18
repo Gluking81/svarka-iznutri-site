@@ -1,0 +1,54 @@
+﻿/* 01 тАФ INDUSTRIAL JOURNAL: dark graphite, factory-orange, modular editorial grid */
+:root{--graphite:#1b2529;--ink:#152025;--steel:#314045;--paper:#eef1ef;--muted:#566469;--line:#d0d9d7;--accent:#d86f35;--accent-soft:#fde7d7}
+.site-header{background:#10191d;border-bottom:1px solid #47555a}
+.header-inner{min-height:94px}
+.brand{position:relative;padding-left:30px}
+.brand:before{content:"";position:absolute;left:0;top:2px;width:15px;height:31px;clip-path:polygon(65% 0%,100% 0%,45% 51%,95% 51%,20% 100%,42% 48%,0 48%);background:#ed8a4f}
+.brand strong{font-size:1.05rem;font-weight:850;letter-spacing:.055em}
+.brand span{color:#a9bdc0}
+.nav a{color:#c5d0d1;letter-spacing:.012em}
+.nav a[aria-current=page]{color:#fff;border-color:#e6854b}
+.header-telegram{border-color:#b75b2e;background:#b75b2e;color:#fff;border-radius:3px}
+.header-telegram:hover{background:#ed8a4f}
+.hero{background:radial-gradient(ellipse at 86% 18%,#34464b 0%,transparent 50%),linear-gradient(120deg,#111d22,#202d30 72%);padding:102px 0 110px}
+.hero-grid{grid-template-columns:minmax(0,1fr) minmax(320px,.76fr);gap:42px;align-items:center}
+.hero .eyebrow{color:#f0a46c;border-left:3px solid #e47c43;padding-left:13px}
+.hero h1{font-size:clamp(3.1rem,5.4vw,5.8rem);letter-spacing:-.065em;line-height:.99;text-wrap:balance}
+.hero p{color:#d1dcd9}
+.hero-photo{border:1px solid #748184;position:relative;box-shadow:18px 18px 0 #0c14184d}
+.hero-photo img{height:420px;object-fit:contain;background:#dee4e3}
+.hero-photo figcaption{background:#10191d;color:#c2d4d5;border-top:3px solid var(--accent)}
+.button{border-radius:3px;text-transform:none}
+.button-accent{background:#d16a33;border-color:#d16a33}
+.section{padding:92px 0}
+.section h2,.content-page h1{font-weight:850;letter-spacing:-.055em}
+.section-head{border-bottom:1px solid #b6c3c0;padding-bottom:20px;margin-bottom:30px}
+.eyebrow{font-size:.72rem;letter-spacing:.18em}
+.topic-grid{gap:12px;background:transparent;border:0}
+.topic{background:#fff;min-height:167px;border-top:4px solid #263338;position:relative;padding:24px;box-shadow:0 3px 8px #1927290c}
+.topic:after{content:"\2197";position:absolute;top:18px;right:22px;font-size:1.2rem;color:#b3c1be}
+.topic:hover{background:#f8ece5;border-color:var(--accent);text-decoration:none}
+.topic span{font-weight:800}
+.topic strong{max-width:245px;font-size:1.32rem;letter-spacing:-.03em}
+.article-grid{gap:18px}
+.article-card{border:1px solid #c9d3d1;border-bottom:3px solid #2a383d;box-shadow:0 2px 12px #13202309}
+.article-card:first-child{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr}
+.article-card:first-child .card-photo{height:100%;min-height:310px;aspect-ratio:auto}
+.article-card:first-child .card-body{padding:34px;justify-content:center}
+.article-card:first-child .card-body h3{font-size:clamp(1.45rem,2.5vw,2.4rem)}
+.card-photo-text{background:linear-gradient(140deg,#172329,#46535c)}
+.card-body h3{letter-spacing:-.03em;font-weight:800}
+.card-meta{letter-spacing:.13em}
+.card-arrow{font-weight:800;color:#9c4b22}
+.question{border-left:3px solid #bb693d}
+.telegram-band{background:linear-gradient(112deg,#0f1b1f,#263c41);border-top:5px solid #d8773b}
+.content-page{padding-top:72px}
+.content-grid{gap:58px}
+.aside{position:sticky;top:95px;border-top:4px solid var(--accent);box-shadow:0 8px 25px #111b1d0d}
+.prose h2{padding-bottom:12px;border-bottom:1px solid #d6dedd}
+.media-figure img{background:#edf1ef}
+.short-answer{border-left-width:6px}
+@media(max-width:1100px){.hero-grid{gap:26px}.article-card:first-child{grid-column:span 2}.header-inner{min-height:88px}}
+@media(max-width:860px){.header-inner{min-height:72px}.brand{padding-left:23px}.brand:before{height:26px}.aside{position:static}.article-card:first-child{display:flex;grid-column:span 2}.article-card:first-child .card-photo{min-height:180px;height:auto;aspect-ratio:16/9}}
+@media(max-width:740px){.hero{padding:56px 0 74px}.hero-grid{grid-template-columns:1fr}.hero h1{font-size:clamp(2.4rem,8vw,3.6rem)}.hero-photo{box-shadow:8px 8px 0 #0c14184d}.hero-photo img{height:auto;max-height:340px}.section{padding:60px 0}.topic-grid{grid-template-columns:repeat(2,1fr)}.article-card:first-child{grid-column:auto}.article-card:first-child .card-body{padding:22px}.article-card:first-child .card-body h3{font-size:1.33rem}}
+@media(max-width:430px){.topic-grid{grid-template-columns:1fr}.topic{min-height:106px}.article-grid{grid-template-columns:1fr}}
