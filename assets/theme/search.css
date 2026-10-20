@@ -1,0 +1,20 @@
+/* Brand-integrated Pagefind static search */
+.search-main{background:#edf1ef;min-height:72vh}
+.search-main .content-page>h1{font-size:clamp(2.5rem,4.4vw,4.7rem);font-weight:850;letter-spacing:-.058em;line-height:1.05;max-width:780px}
+.search-main .page-intro{max-width:760px;font-size:1.12rem}
+.search-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(235px,310px);gap:40px;margin-top:50px;align-items:start}
+.search-box-section{background:#fff;padding:30px;border:1px solid #d1dbd8;border-top:4px solid #d2753e;min-height:350px}
+.search-examples{background:#19272c;padding:25px;color:#eff4f1}
+.search-examples h2{font-size:1.3rem;margin:0 0 8px}
+.search-examples p{color:#c6d1cf;font-size:.9rem;margin:0 0 16px}
+.search-quicklinks{display:flex;flex-wrap:wrap;gap:9px}
+.search-quicklinks button{appearance:none;color:#f4f5f2;background:#2b3c42;border:1px solid #53666a;cursor:pointer;padding:9px 12px;font:inherit;font-size:.84rem}
+.search-quicklinks button:hover,.search-quicklinks button:focus-visible{background:#d57339;color:#111d22}
+.search-side-note{margin-top:28px;padding-top:19px;border-top:1px solid #4b6064;color:#aebfbc;font-size:.84rem;line-height:1.6}
+.search-nav-link{font-weight:700;color:#f0a36f!important}
+:root{--pagefind-ui-primary:#bd602d;--pagefind-ui-text:#1c292d;--pagefind-ui-background:#fff;--pagefind-ui-border:#cfd9d5;--pagefind-ui-tag:#edf1ef;--pagefind-ui-font:system-ui,'Segoe UI',sans-serif}
+.pagefind-ui__search-input{width:100%;font-size:1.1rem!important}
+.pagefind-ui__result-title{font-weight:800;line-height:1.25}
+.pagefind-ui__result-link{color:#9d461f}
+@media(max-width:860px){.search-layout{grid-template-columns:1fr;gap:18px}.search-box-section{padding:20px;min-height:300px}}
+@media(max-width:500px){.search-layout{margin-top:30px}.search-main .content-page>h1{font-size:2.25rem}.search-main .page-intro{font-size:1rem}.search-box-section{padding:15px}}

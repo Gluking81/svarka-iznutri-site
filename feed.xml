@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0">
+  <channel>
+    <title>Сварка изнутри | Инструмент по делу</title>
+    <link>https://ipbelova.tech/</link>
+    <description>Независимое медиа о сварке, инструменте, реальной комплектации и вопросах покупателей.</description>
+    <language>ru</language>
+    <item>
+      <title>ESAB SAVAGE A40: что на самом деле было в комплекте</title>
+      <link>https://ipbelova.tech/voprosy/esab-savage-a40-komplekt/</link>
+      <guid isPermaLink="true">https://ipbelova.tech/voprosy/esab-savage-a40-komplekt/</guid>
+      <description>Реальная проверка комплектации сварочной маски ESAB SAVAGE A40: установленная батарейка, защитные стёкла и смысл слова «сменная».</description>
+    </item>
+    <item>
+      <title>АВРОРА Динамика 2000 — где искать горелку и что входит в комплект</title>
+      <link>https://ipbelova.tech/razbory/d2000-gorelka-komplekt/</link>
+      <guid isPermaLink="true">https://ipbelova.tech/razbory/d2000-gorelka-komplekt/</guid>
+      <description>Как проверить наличие горелки и состав комплекта АВРОРА Динамика 2000 по коробке, документам и фактической поставке.</description>
+    </item>
+    <item>
+      <title>Почему проволока идёт рывками — механизм подачи Динамики 2000</title>
+      <link>https://ipbelova.tech/praktika/d2000-provoloka-ryvkami/</link>
+      <guid isPermaLink="true">https://ipbelova.tech/praktika/d2000-provoloka-ryvkami/</guid>
+      <description>Последовательная проверка подачи проволоки: катушка, ролик, прижим, канал и горелка. Без непроверенных диагнозов для конкретного аппарата.</description>
+    </item>
+    <item>
+      <title>Можно ли АВРОРА Динамика 2000 варить без газа</title>
+      <link>https://ipbelova.tech/voprosy/d2000-bez-gaza/</link>
+      <guid isPermaLink="true">https://ipbelova.tech/voprosy/d2000-bez-gaza/</guid>
+      <description>Что нужно подтвердить в документации и на конкретном аппарате перед сваркой самозащитной порошковой проволокой без газа.</description>
+    </item>
+    <item>
+      <title>Какую проволоку выбрать — 0,8 или 1,0 мм</title>
+      <link>https://ipbelova.tech/rashodka/provoloka-08-ili-10/</link>
+      <guid isPermaLink="true">https://ipbelova.tech/rashodka/provoloka-08-ili-10/</guid>
+      <description>Как сравнивать сварочную проволоку 0,8 и 1,0 мм по материалу, работе, оборудованию и доступным расходникам.</description>
+    </item>
+    <item>
+      <title>Порошковая проволока без газа или обычная с CO₂</title>
+      <link>https://ipbelova.tech/sravneniya/poroshkovaya-ili-co2/</link>
+      <guid isPermaLink="true">https://ipbelova.tech/sravneniya/poroshkovaya-ili-co2/</guid>
+      <description>Практическая рамка сравнения самозащитной порошковой и сплошной проволоки с CO₂ без вымышленных тестов и универсальных победителей.</description>
+    </item>
+    <item>
+      <title>АВРОРА Динамика 2000 — комплектация, подача, NO GAS</title>
+      <link>https://ipbelova.tech/modeli/avrora-dinamika-2000/</link>
+      <guid isPermaLink="true">https://ipbelova.tech/modeli/avrora-dinamika-2000/</guid>
+      <description>Досье АВРОРА Динамика 2000: реальные фото аппарата и распаковки, где лежит горелка, механизм подачи, работа без газа и ссылки на руководство.</description>
+    </item>
+  </channel>
+</rss>
