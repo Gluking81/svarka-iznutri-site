@@ -151,3 +151,9 @@
 @media(prefers-reduced-motion:reduce){
  .editorial-actions a,.editorial-feature-main img,.editorial-small-photo img,.editorial-category{transition:none!important}
 }
+
+/* Lighthouse WCAG contrast improvements (2026-10-20) */
+.editorial-feature .eyebrow,.editorial-categories .eyebrow,.section .section-head .eyebrow{color:#97461c}
+.editorial-small-body small{color:#89401f}
+.editorial-category .editorial-cat-num{color:#8f401f}
+.telegram-band .button,.telegram-band .button-accent{background:#a04a1e;border-color:#a04a1e;color:#fff}
