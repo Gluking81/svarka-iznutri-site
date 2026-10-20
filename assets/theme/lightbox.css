@@ -1,0 +1,11 @@
+
+/* PhotoSwipe local gallery, tap + keyboard, no change to sourced photos */
+.photo-gallery .media-figure{position:relative}
+.photo-gallery .photo-zoom{display:block;position:relative;cursor:zoom-in;line-height:0;overflow:hidden;outline-offset:4px;background:#d8e0dc}
+.photo-gallery .photo-zoom img{display:block;max-width:100%;height:auto;transition:filter .2s}
+.photo-gallery .photo-zoom:hover img{filter:brightness(.88)}
+.photo-gallery .zoom-hint{position:absolute;right:12px;bottom:12px;line-height:1.25;background:#152226ec;color:#fff;border:1px solid #e68a51aa;padding:8px 12px;font-size:.76rem;letter-spacing:.03em;font-weight:750}
+.photo-gallery .photo-zoom:focus-visible{outline:3px solid #e1864a}
+.pswp__custom-caption{position:absolute;bottom:0;left:0;width:100%;padding:14px 20px;min-height:64px;background:#142126d8;color:#fff;font-size:.9rem;line-height:1.4;text-align:center;pointer-events:none}
+@media(max-width:540px){.photo-gallery .zoom-hint{padding:6px 9px;font-size:.71rem}}
+@media(prefers-reduced-motion:reduce){.photo-gallery .photo-zoom img{transition:none}}
