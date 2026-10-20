@@ -64,6 +64,6 @@
 .petrovich-ask-band .eyebrow{grid-column:1/-1;color:#ffb987}
 .petrovich-ask-band h2{font-size:clamp(2.4rem,4.7vw,4.4rem);letter-spacing:-.055em;line-height:1.05;margin:8px 0 0}
 .petrovich-ask-band p{max-width:530px;margin:6px 0 8px;color:#c8d6d2;font-size:1.01rem;line-height:1.65}
-.petrovich-ask-band button{justify-self:start;border:1px solid #efa977;padding:13px 22px;background:#c36b36;color:#fff;font-weight:800;grid-column:2;cursor:pointer}
-.petrovich-ask-band button:hover{background:#e27f42}
+.petrovich-ask-band button{justify-self:start;border:1px solid #efa977;padding:13px 22px;background:#9b481e;color:#fff;font-weight:800;grid-column:2;cursor:pointer}
+.petrovich-ask-band button:hover{background:#803915}
 @media(max-width:720px){.petrovich-ask-band .wrap{grid-template-columns:1fr;row-gap:15px}.petrovich-ask-band button{grid-column:1}}
