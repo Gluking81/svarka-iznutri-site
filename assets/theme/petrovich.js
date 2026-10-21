@@ -88,6 +88,13 @@
    try{
      const matches=await queryArticles(q);
      wait.textContent=matches.length?'Нашёл материалы на сайте. Посмотри подходящие статьи:':'Пока нет подходящего материала. Попробуй уточнить модель или выбрать тему в поиске по сайту.';
+     if(!matches.length){
+       const link=document.createElement('a');
+       link.href='/poisk/';
+       link.textContent='Открыть полный поиск по статьям ↗';
+       wait.appendChild(document.createElement('br'));
+       wait.appendChild(link);
+     }
      if(matches.length){
        const list=document.createElement('div');
        list.className='petrovich-results';
