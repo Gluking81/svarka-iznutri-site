@@ -14,15 +14,16 @@
 <header class="petrovich-panel-head"><div class="petrovich-avatar" aria-hidden="true">П</div><div class="petrovich-panel-heading">
 <strong id="petrovich-title">Петрович</strong><span>Помощник по материалам сайта</span></div>
 <button type="button" class="petrovich-close" id="petrovich-close" aria-label="Закрыть помощника">×</button></header>
-<div class="petrovich-thread" id="petrovich-thread" aria-live="polite" aria-relevant="additions">
+<div class="petrovich-thread" id="petrovich-thread" role="log" aria-label="История поиска по статьям" aria-live="off" aria-busy="false">
 <div class="petrovich-bubble petrovich-from-bot">Привет! Я помогу найти статьи про сварку, комплектацию и настройку оборудования. Пока работаю с опубликованными материалами — не с остатками или внутренней базой магазина.</div></div>
+<div class="visually-hidden" id="petrovich-status" role="status" aria-live="polite" aria-atomic="true"></div>
 <div class="petrovich-suggestions" aria-label="Примеры вопросов"><button type="button" data-petrovich-question="Где горелка у Динамики 2000?">Где горелка?</button>
 <button type="button" data-petrovich-question="Можно ли варить без газа?">Без газа</button>
 <button type="button" data-petrovich-question="Проволока 0,8 или 1,0?">Какую проволоку выбрать?</button></div>
 <form class="petrovich-form" id="petrovich-form" role="search" autocomplete="off">
 <label for="petrovich-question" class="visually-hidden">Ваш вопрос про сварку</label>
-<input id="petrovich-question" name="question" type="search" maxlength="220" placeholder="Например, как варить без газа?" required>
+<input id="petrovich-question" name="question" type="search" maxlength="220" aria-controls="petrovich-thread" aria-describedby="petrovich-disclaimer" placeholder="Например, как варить без газа?" required>
 <button type="submit" aria-label="Найти материалы по вопросу">Найти ↗</button></form>
-<p class="petrovich-disclaimer">Бета-версия: поиск по статьям, не ИИ-консультация. Ответы требуют проверки по инструкции к вашей модели. <a href="/poisk/">Открыть поиск</a></p>
+<p class="petrovich-disclaimer" id="petrovich-disclaimer">Бета-версия: поиск по статьям, не ИИ-консультация. Ответы требуют проверки по инструкции к вашей модели. <a href="/poisk/">Открыть поиск</a></p>
 </section></div>
 <noscript><style>#petrovich-widget,[data-petrovich-open]{display:none!important}</style></noscript></body></html>

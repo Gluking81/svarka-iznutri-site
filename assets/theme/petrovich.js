@@ -6,7 +6,8 @@
  const thread=document.getElementById('petrovich-thread');
  const form=document.getElementById('petrovich-form');
  const input=document.getElementById('petrovich-question');
- if(!launcher||!panel||!thread||!form||!input)return;
+ const status=document.getElementById('petrovich-status');
+ if(!launcher||!panel||!thread||!form||!input||!status)return;
  let pagefindPromise=null;
  let working=false;
  let returnFocus=null;
@@ -82,12 +83,15 @@
    if(!q||q.length>220||working)return;
    working=true;
    form.querySelector('button[type=submit]').disabled=true;
+   thread.setAttribute('aria-busy','true');
+   status.textContent='Ищу подходящие статьи…';
    bubble(q,'user');
    input.value='';
    const wait=bubble('Подбираю материалы по вашему вопросу…');
    try{
      const matches=await queryArticles(q);
      wait.textContent=matches.length?'Нашёл материалы на сайте. Посмотри подходящие статьи:':'Пока нет подходящего материала. Попробуй уточнить модель или выбрать тему в поиске по сайту.';
+     status.textContent=matches.length?'Найдено материалов: '+matches.length+'. Открывайте ссылки в результатах.':'Совпадений не найдено. Доступна ссылка на полный поиск.';
      if(!matches.length){
        const link=document.createElement('a');
        link.href='/poisk/';
@@ -113,6 +117,7 @@
        wait.appendChild(list);
      }
    }catch{
+     status.textContent='Поиск временно недоступен. Доступна ссылка на полный поиск.';
      wait.textContent='Поиск сейчас недоступен. Открой раздел «Поиск по статьям» или попробуй позже.';
      const a=document.createElement('a');
      a.href='/poisk/';a.textContent='Перейти к поиску ↗';
@@ -120,7 +125,12 @@
    }finally{
      working=false;
      form.querySelector('button[type=submit]').disabled=false;
+     thread.setAttribute('aria-busy','false');
      thread.scrollTop=thread.scrollHeight;
+     if(!panel.hidden){
+       const firstLink=wait.querySelector('a');
+       if(firstLink)firstLink.focus();
+     }
    }
  }
  form.addEventListener('submit',e=>{e.preventDefault();ask(input.value);});
