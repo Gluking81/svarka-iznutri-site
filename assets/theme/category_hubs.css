@@ -80,3 +80,16 @@
 .article-detail .hub-article-matrix .hub-table tbody th{font-weight:800}
 .article-detail .hub-article-matrix a{color:#a94d27;font-weight:800;text-decoration:underline}
 @media(max-width:680px){.article-detail .hub-article-matrix .hub-table tbody th,.article-detail .hub-article-matrix .hub-table tbody td{padding:8px 0;font-size:.88rem}}
+
+/* v2: browsable buyer-topic clusters, progressive enhancement with native anchors */
+.hub-topic-nav{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 30px}
+.hub-topic-nav a{display:inline-flex;align-items:center;gap:12px;padding:11px 16px;background:#fff;border:1px solid #d0dcd5;border-radius:100px;color:#27383b;font-weight:750;text-decoration:none;font-size:.87rem}
+.hub-topic-nav a:hover,.hub-topic-nav a:focus-visible{background:#fff1e6;border-color:#c76b3f}
+.hub-topic-nav span{display:inline-flex;min-width:23px;height:23px;align-items:center;justify-content:center;border-radius:50%;background:#e8eee9;color:#6d5143;font-size:.72rem;font-weight:900}
+.hub-topic-group{margin-top:28px}
+.hub-topic-title{font-size:clamp(1.12rem,1.8vw,1.4rem);letter-spacing:-.025em;margin:0 0 14px;color:#263a3e}
+.hub-topic-title:before{content:"";display:inline-block;width:7px;height:16px;margin-right:12px;background:#bd693a;border-radius:3px;vertical-align:baseline}
+.hub-topic-group:target .hub-topic-title{color:#9f4e27}
+.hub-topic-title{scroll-margin-top:24px}
+.hub-page :is(a,summary):focus-visible{outline:3px solid #f59354;outline-offset:3px}
+@media(max-width:680px){.hub-topic-nav{gap:8px}.hub-topic-nav a{padding:10px 13px;font-size:.83rem}.hub-topic-group{margin-top:25px}}
