@@ -28,3 +28,4 @@ lightbox.on('uiRegister', () => {
   });
 });
 lightbox.init();
+document.documentElement.dataset.lightboxReady='true';
