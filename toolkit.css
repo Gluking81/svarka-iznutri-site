@@ -1,0 +1,53 @@
+
+.tool-hero{background:#20272a;color:#f5f6f1;padding:46px 0 54px}
+.tool-hero .breadcrumb,.tool-hero .breadcrumb a{color:#cfcbc2;font-size:.87rem}
+.tool-hero .eyebrow{margin:20px 0 13px;color:#e3a06c;font-size:.75rem;letter-spacing:.12em}
+.tool-hero h1{max-width:840px;margin:0;font-size:clamp(2rem,4.4vw,3.65rem);line-height:1.1;letter-spacing:-.045em}
+.tool-hero p{max-width:800px;font-size:1.08rem;line-height:1.65;color:#e0e2db}
+.tool-container{padding-top:46px;padding-bottom:76px}
+.tool-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.tool-card{display:block;background:#fff;border:1px solid #ced8d2;border-top:4px solid #c46d3c;border-radius:10px;padding:28px;text-decoration:none;color:#1c3032;box-shadow:0 8px 18px #1c323010;transition:transform .16s}
+.tool-card:hover{transform:translateY(-2px)}
+.tool-card h2{margin:12px 0;font-size:1.65rem;line-height:1.2}
+.tool-card p{line-height:1.65;color:#475a5b}
+.tool-card strong{color:#ab542e;display:block;margin-top:22px}
+.tool-overline{font-size:.72rem;font-weight:800;color:#9d5833;letter-spacing:.12em}
+.tool-note{padding:17px 21px;background:#ecf0ec;border-left:4px solid #c46d3c;line-height:1.65;margin-top:27px}
+.tool-layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:35px;align-items:start}
+.tool-layout article{min-width:0}
+.tool-layout article h2{font-size:1.65rem}
+.tool-form{margin:22px 0 16px}
+.tool-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.tool-field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.tool-field span{font-weight:700;font-size:.91rem;color:#344448}
+.tool-field input,.tool-field select{font:inherit;width:100%;max-width:100%;min-width:0;border:1px solid #aebdb8;border-radius:7px;padding:11px 12px;background:white;color:#17292d}
+.tool-field input:focus-visible,.tool-field select:focus-visible{outline:3px solid #e59d66;outline-offset:2px}
+.tool-form>.button{margin-top:22px;cursor:pointer}
+.tool-aside{background:#edf1ed;border-top:4px solid #c46d3c;padding:22px;border-radius:7px}
+.tool-aside h2{font-size:1.13rem;margin:0}
+.tool-aside p{line-height:1.65;font-size:.94rem}
+.tool-aside a{color:#824522}
+.tool-geometry{margin:24px 0;border:1px solid #cbd6d0;padding:18px;border-radius:7px;min-width:0}
+.tool-geometry legend{padding:0 7px;font-weight:800}
+.tool-geometry p{font-size:.85rem;color:#516263;line-height:1.6}
+.tool-geometry[hidden]{display:none}
+.tool-result{border:1px solid #c6d5c9;border-left:5px solid #c46d3c;background:#fff;padding:24px;margin:24px 0;border-radius:5px}
+.tool-result h2{margin-top:0;font-size:1.5rem}
+.tool-result h3{font-size:1.12rem;margin-top:20px}
+.tool-result li,.tool-result p{line-height:1.7}
+.tool-result li{margin-bottom:7px}
+.tool-result a,.tool-related a,.tool-sources a{color:#a6532b}
+.tool-caution{margin-top:20px;padding:14px 16px;border-left:4px solid #b85d37;background:#f6eee7}
+.tool-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+.tool-stat{background:#ecf0ec;padding:15px;min-width:0;border-radius:6px}
+.tool-stat span{display:block;font-size:.78rem;color:#4b585b}
+.tool-stat strong{display:block;margin-top:7px;font-size:clamp(1.15rem,2.2vw,1.58rem);overflow-wrap:anywhere}
+.tool-related,.tool-sources{margin-top:35px;border-top:1px solid #cad5ce;padding-top:22px}
+.tool-related h2,.tool-sources h2{font-size:1.45rem}
+.tool-related p{line-height:1.7}
+.tool-links{display:flex;flex-wrap:wrap;gap:12px}
+.tool-links a{background:#fff;padding:10px;border:1px solid #cfdbd3;border-radius:6px;text-decoration:none;font-weight:750}
+.tool-sources ul{line-height:1.9}
+@media(max-width:950px){.tool-layout{grid-template-columns:1fr}.tool-aside{max-width:none}.tool-container{padding-top:28px}}
+@media(max-width:640px){.tool-card-grid,.tool-form-grid,.tool-stat-grid{grid-template-columns:1fr}.tool-hero{padding:30px 0 38px}.tool-card{padding:22px}.tool-result{padding:18px}.tool-stat-grid{gap:8px}.tool-stat strong{font-size:1.5rem}}
+@media(prefers-reduced-motion:reduce){.tool-card{transition:none}}
