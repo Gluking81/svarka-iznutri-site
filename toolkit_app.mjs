@@ -1,4 +1,5 @@
 import { recommendProcess,estimateConsumable } from "/toolkit_logic.mjs";
+import { recommendVdsMaterials,VDS_VERIFIED_DATE,VDS_CATEGORIES } from "/toolkit_multibrand_offers.mjs";
 
 const fmt=(n,d=2)=>new Intl.NumberFormat("ru-RU",{maximumFractionDigits:d,minimumFractionDigits:d}).format(n);
 const formData=(form)=>Object.fromEntries(new FormData(form).entries());
@@ -20,6 +21,48 @@ function setupProcess(){
     if(result.choices.length)section(output,"Что имеет смысл рассмотреть",result.choices);
     section(output,"Обязательные проверки",result.checks);
     const caution=node("p",result.caution);caution.className="tool-caution";output.append(caution);
+    const offerPlan=recommendVdsMaterials(formData(form),result);
+    const vendor=document.createElement("section");
+    vendor.className="tool-vds";
+    vendor.setAttribute("aria-label","Предложения магазина ВДС");
+    const disclosure=node("p","Подборка товаров и разделов ООО «ВДС» — коммерческие ссылки. «Сварка изнутри» — независимый авторский проект, а не сайт ВДС.");
+    disclosure.textContent="\u042d\u0442\u043e \u043d\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043c\u043e\u0435 \u044d\u043a\u0441\u043f\u0435\u0440\u0442\u043d\u043e\u0435 \u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435. \u0421\u0441\u044b\u043b\u043a\u0438 \u043d\u0430 \u0445\u0430\u0440\u0430\u043a\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043a\u0438 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u0435\u0439 \u043e\u0442\u0434\u0435\u043b\u0435\u043d\u044b \u043e\u0442 \u043a\u043e\u043c\u043c\u0435\u0440\u0447\u0435\u0441\u043a\u0438\u0445 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0439 \u041e\u041e\u041e \u00ab\u0412\u0414\u0421\u00bb. \u0426\u0435\u043d\u044b \u0438 \u043e\u0441\u0442\u0430\u0442\u043a\u0438 \u0437\u0434\u0435\u0441\u044c \u043d\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u044e\u0442\u0441\u044f.";
+    disclosure.className="tool-vds-disclosure";vendor.append(disclosure);
+    if(offerPlan.allowed){
+      vendor.append(node("h3","\u041c\u043e\u0434\u0435\u043b\u0438 \u0440\u0430\u0437\u043d\u044b\u0445 \u0431\u0440\u0435\u043d\u0434\u043e\u0432 \u0434\u043b\u044f \u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u044f"));
+      const intro=node("p","Не список гарантированно совместимых товаров: категории и примеры подобраны по вашему сценарию, конкретную модель и присадку нужно подтвердить по паспорту. Цены и остатки не выводятся.");
+      intro.textContent="\u042d\u0442\u043e \u043c\u043e\u0434\u0435\u043b\u0438 \u0434\u043b\u044f \u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u044f \u043f\u043e \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0451\u043d\u043d\u044b\u043c \u0440\u0435\u0436\u0438\u043c\u0430\u043c, \u0430 \u043d\u0435 \u0433\u0430\u0440\u0430\u043d\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e \u0441\u043e\u0432\u043c\u0435\u0441\u0442\u0438\u043c\u044b\u0435 \u0441 \u0437\u0430\u0434\u0430\u0447\u0435\u0439 \u0442\u043e\u0432\u0430\u0440\u044b \u0432 \u043d\u0430\u043b\u0438\u0447\u0438\u0438. \u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u043f\u0430\u0441\u043f\u043e\u0440\u0442 \u0430\u043f\u043f\u0430\u0440\u0430\u0442\u0430, \u043a\u043e\u043c\u043f\u043b\u0435\u043a\u0442\u043d\u043e\u0441\u0442\u044c \u0438 \u0440\u0435\u0430\u043b\u044c\u043d\u044b\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u044f \u043f\u0440\u043e\u0434\u0430\u0432\u0446\u0430.";
+      vendor.append(intro);
+      const list=document.createElement("div");list.className="tool-vds-grid";
+      for(const offer of offerPlan.items){
+        const card=document.createElement("article");card.className="tool-vds-card";
+        const type=node("span",offer.kind==="product"?"Карточка товара · артикул "+offer.sku:"Раздел каталога");
+        if(offer.kind==="model")type.textContent="\u041c\u043e\u0434\u0435\u043b\u044c \u0434\u043b\u044f \u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u044f \u00b7 "+offer.brand+" \u00b7 \u0430\u0440\u0442. "+offer.sku;
+        if(offer.kind==="material")type.textContent="\u0420\u0430\u0441\u0445\u043e\u0434\u043d\u0438\u043a \u0434\u043b\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u00b7 "+offer.brand+" \u00b7 \u0430\u0440\u0442. "+offer.sku;
+        type.className="tool-vds-type";
+        const title=node("h4",offer.title);
+        const desc=node("p",offer.description);
+        const why=node("p",offer.why);why.className="tool-vds-why";
+        const a=node("a",offer.kind==="product"?"Посмотреть товар у ВДС ↗":"Открыть каталог ВДС ↗");
+        if(offer.kind==="model")a.textContent=offer.url.includes("vdsperm.ru")?"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u043c\u043e\u0434\u0435\u043b\u0438 \u0443 \u0412\u0414\u0421 \u2197":"\u0425\u0430\u0440\u0430\u043a\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043a\u0438 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f \u2197";
+        if(offer.kind==="material")a.textContent="\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0440\u0430\u0441\u0445\u043e\u0434\u043d\u0438\u043a\u0430 \u0443 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f \u2197";
+        a.href=offer.url;a.target="_blank";a.rel=offer.url.includes("vdsperm.ru")?"noopener noreferrer sponsored":"noopener noreferrer";
+        card.append(type,title,desc,why,a);list.append(card);
+      }
+      vendor.append(list);
+      const seller=node("p","");
+      const sellerAnchor=node("a","\u041f\u043e\u0441\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u0432\u0438\u0442\u0440\u0438\u043d\u0443 \u0412\u0414\u0421 \u043d\u0430 Ozon \u2014 \u0443\u0442\u043e\u0447\u043d\u0438\u0442\u044c \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u044f \u2197");
+      sellerAnchor.href="https://www.ozon.ru/seller/vds-vse-dlya-svarki/";
+      sellerAnchor.target="_blank";sellerAnchor.rel="noopener noreferrer sponsored";
+      seller.append(sellerAnchor);vendor.append(seller);
+      section(vendor,"Что проверить перед покупкой",offerPlan.checklist);
+      const footer=node("p",offerPlan.reason+" Позиции и характеристики сверены по публичному каталогу "+VDS_VERIFIED_DATE+". Наличие, цены и замены проверяются уже у продавца.");
+      footer.textContent=offerPlan.reason+" \u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u043a\u0440\u044b\u0442\u044b\u0445 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0439: "+VDS_VERIFIED_DATE+". \u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0438 \u043a\u043e\u043c\u043f\u043b\u0435\u043a\u0442\u0430\u0446\u0438\u044e \u0443\u0442\u043e\u0447\u043d\u044f\u0439\u0442\u0435 \u0443 \u043f\u0440\u043e\u0434\u0430\u0432\u0446\u0430.";
+      footer.className="tool-vds-note";vendor.append(footer);
+    }else{
+      vendor.append(node("h3","Товарный подбор пока недоступен"),node("p",offerPlan.reason));
+    }
+    output.append(vendor);
     if(result.related){
       const p=document.createElement("p");const a=node("a","Почитать связанный разбор →");a.href=result.related;p.append(a);output.append(p);
     }
@@ -59,6 +102,13 @@ function setupConsumable(){
     output.append(description);
     const warning=node("p","Оценка не определяет требуемый катет, разделку, число проходов, прочность соединения или параметры аппарата. Эти размеры задаются проектом/технологией. Не учитывает прихватки, переходы, остатки на катушке и фактические потери сверх введённых.");
     warning.className="tool-caution";output.append(warning);
+    const current=formData(form);
+    const category=current.metal==="aluminum"?VDS_CATEGORIES.material:VDS_CATEGORIES.wire;
+    const commercial=document.createElement("div");commercial.className="tool-vds tool-vds-lite";
+    commercial.append(node("p","Коммерческая ссылка на каталог ООО «ВДС»: «Сварка изнутри» остаётся независимым проектом. Точный вид присадки, диаметр и тип упаковки этот расчёт не определяет."));
+    const href=node("a","Посмотреть "+(current.metal==="aluminum"?"сварочные материалы":"сварочную проволоку")+" в ВДС ↗");
+    href.href=category.url;href.target="_blank";href.rel="noopener noreferrer sponsored";commercial.append(href);
+    output.append(commercial);
   };
   form.addEventListener("input",update);
   form.addEventListener("change",()=>{adjustFields();update();});
