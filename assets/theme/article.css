@@ -55,3 +55,11 @@
 }
 @media(prefers-reduced-motion:reduce){.article-toc li a{transition:none}}
 
+
+/* Two-model evidence worksheet (E06): legible headings and mobile horizontal scroll. */
+.article-detail .guide-compare-table{margin:16px 0 24px;font-size:.88rem;line-height:1.45}
+.article-detail .guide-compare-table caption{text-align:left;font-size:.83rem;font-weight:750;margin-bottom:10px;color:#48595b}
+.article-detail .guide-compare-table th,.article-detail .guide-compare-table td{border:1px solid #c6d5ce;padding:11px 13px;text-align:left;vertical-align:top}
+.article-detail .guide-compare-table thead th{background:#e1e8e5;color:#263639;font-weight:800}
+.article-detail .guide-compare-table tbody th{background:#f1f5f2;font-weight:700}
+.article-detail .guide-compare-table tbody tr:nth-child(even) td{background:#f7f9f7}
