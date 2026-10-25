@@ -65,3 +65,7 @@
 .tool-vds-why{color:#405652;border-left:3px solid #d0ae7b;padding-left:10px}
 .tool-vds-note{font-size:.82rem;line-height:1.6;color:#5a6667}
 @media(max-width:720px){.tool-vds-grid{grid-template-columns:1fr}.tool-vds{padding-top:14px}}
+.wire-buy-section .tool-vds-card{display:flex;flex-direction:column;align-items:flex-start}
+.wire-buy-section .tool-vds-card a{margin-top:auto;padding-top:8px}
+.wire-buy-packs{font-weight:750;color:#315d51;background:#edf3eb;padding:8px 10px;border-radius:5px}
+.wire-buy-section>p>a{font-weight:750;text-underline-offset:3px}

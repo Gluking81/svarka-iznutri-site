@@ -1,5 +1,6 @@
 import { recommendProcess,estimateConsumable } from "/toolkit_logic.mjs";
 import { recommendVdsMaterials,VDS_VERIFIED_DATE,VDS_CATEGORIES } from "/toolkit_multibrand_offers.mjs";
+import { estimatePurchasableOptions } from "/toolkit_wire_purchase.mjs";
 
 const fmt=(n,d=2)=>new Intl.NumberFormat("ru-RU",{maximumFractionDigits:d,minimumFractionDigits:d}).format(n);
 const formData=(form)=>Object.fromEntries(new FormData(form).entries());
@@ -72,6 +73,54 @@ function setupProcess(){
   form.addEventListener("submit",(e)=>{e.preventDefault();update();output.focus();});
   update();
 }
+function renderWirePurchaseOptions(values,consumption,output){
+  const selection=estimatePurchasableOptions({...values,consumableKg:consumption.consumableKg});
+  const block=document.createElement("section");
+  block.className="tool-vds wire-buy-section";
+  block.setAttribute("aria-label","Примеры сварочных материалов и покупка");
+  block.append(node("h3","Материалы и упаковки под ваш расчёт"));
+  const intro=node("p","\u042d\u0442\u043e \u043a\u0430\u0442\u0430\u043b\u043e\u0433 \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u043e\u0432 \u0434\u043b\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438, \u0430 \u043d\u0435 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u043c\u0430\u0440\u043a\u0438 \u0438\u043b\u0438 \u0434\u0438\u0430\u043c\u0435\u0442\u0440\u0430. \u00ab\u0421\u0432\u0430\u0440\u043a\u0430 \u0438\u0437\u043d\u0443\u0442\u0440\u0438\u00bb \u2014 \u043d\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043c\u044b\u0439 \u043f\u0440\u043e\u0435\u043a\u0442; \u043a\u043e\u043c\u043c\u0435\u0440\u0447\u0435\u0441\u043a\u0430\u044f \u0432\u0438\u0442\u0440\u0438\u043d\u0430 \u0412\u0414\u0421 \u043e\u0431\u043e\u0437\u043d\u0430\u0447\u0435\u043d\u0430 \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e.");
+  intro.className="tool-vds-disclosure";block.append(intro);
+  const caution=node("p",selection.notice);
+  caution.className="tool-caution";block.append(caution);
+  if(selection.items.length){
+    const grid=document.createElement("div");grid.className="tool-vds-grid";
+    for(const offer of selection.items){
+      const card=document.createElement("article");card.className="tool-vds-card";
+      const tag=node("span",offer.brand+" · арт. "+offer.sku);
+      tag.className="tool-vds-type";
+      const h=node("h4",offer.name);
+      const info=node("p","Катушка "+offer.spool+" · "+String(offer.packKg).replace(".",",")+" кг");
+      const n=node("p","По введённой массе: ориентир "+offer.packs+" уп. × "+String(offer.packKg).replace(".",",")+" кг (округление вверх).");
+      n.className="wire-buy-packs";
+      const important=node("p",offer.warning);
+      important.className="tool-vds-why";
+      const link=node("a",offer.channel==="vds"?"Карточка товара у ВДС ↗":"Описание производителя (наличие не проверено) ↗");
+      link.href=offer.url;link.target="_blank";
+      link.rel=offer.channel==="vds"?"noopener noreferrer sponsored":"noopener noreferrer";
+      card.append(tag,h,info,n,important,link);grid.append(card);
+    }
+    block.append(grid);
+  }else{
+    block.append(node("p","Подтверждённых вариантов для этих исходных условий пока нет. Не заменяйте марку расходника другим металлом или процессом сварки."));
+  }
+  if(selection.category){
+    const p=document.createElement("p");
+    const a=node("a","Посмотреть раздел сварочных материалов ВДС ↗");
+    a.href=selection.category;a.target="_blank";a.rel="noopener noreferrer sponsored";
+    p.append(a);block.append(p);
+  }
+  if(selection.shop){
+    const p=document.createElement("p");
+    const a=node("a","Проверить предложения магазина ВДС на Ozon ↗");
+    a.href=selection.shop;a.target="_blank";a.rel="noopener noreferrer sponsored";
+    p.append(a);block.append(p);
+  }
+  const note=node("p","Количество упаковок — только арифметика по введённому расходу; оно не учитывает размер катушки аппарата, реальные потери и минимальную поставку. Цена и остатки не проверяются.");
+  note.className="tool-vds-note";block.append(note);
+  output.append(block);
+}
+
 function setupConsumable(){
   const form=document.getElementById("tool-consumable");if(!form)return;
   const output=document.getElementById("consumable-result");
@@ -102,13 +151,7 @@ function setupConsumable(){
     output.append(description);
     const warning=node("p","Оценка не определяет требуемый катет, разделку, число проходов, прочность соединения или параметры аппарата. Эти размеры задаются проектом/технологией. Не учитывает прихватки, переходы, остатки на катушке и фактические потери сверх введённых.");
     warning.className="tool-caution";output.append(warning);
-    const current=formData(form);
-    const category=current.metal==="aluminum"?VDS_CATEGORIES.material:VDS_CATEGORIES.wire;
-    const commercial=document.createElement("div");commercial.className="tool-vds tool-vds-lite";
-    commercial.append(node("p","Коммерческая ссылка на каталог ООО «ВДС»: «Сварка изнутри» остаётся независимым проектом. Точный вид присадки, диаметр и тип упаковки этот расчёт не определяет."));
-    const href=node("a","Посмотреть "+(current.metal==="aluminum"?"сварочные материалы":"сварочную проволоку")+" в ВДС ↗");
-    href.href=category.url;href.target="_blank";href.rel="noopener noreferrer sponsored";commercial.append(href);
-    output.append(commercial);
+    renderWirePurchaseOptions(formData(form),result,output);
   };
   form.addEventListener("input",update);
   form.addEventListener("change",()=>{adjustFields();update();});
