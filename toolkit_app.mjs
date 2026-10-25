@@ -123,6 +123,18 @@ function renderWirePurchaseOptions(values,consumption,output){
   const guideLink=node("a","D100 или D200: как проверить совместимость катушки ↗");
   guideLink.href="/rashodka/katushka-d100-ili-d200/";
   guide.append(guideLink);output.append(guide);
+  if(values.wireProcess!=="tig"){
+    const partsNote=node("p","");
+    const a=node("a","\u041a\u0430\u043a \u043f\u043e\u0434\u043e\u0431\u0440\u0430\u0442\u044c \u0440\u043e\u043b\u0438\u043a, \u043a\u0430\u043d\u0430\u043b \u0433\u043e\u0440\u0435\u043b\u043a\u0438 \u0438 \u043d\u0430\u043a\u043e\u043d\u0435\u0447\u043d\u0438\u043a \u043f\u043e\u0434 \u044d\u0442\u0443 \u043f\u0440\u043e\u0432\u043e\u043b\u043e\u043a\u0443");
+    a.href="/rashodka/rolik-kanal-nakonechnik-pod-provoloku/";
+    partsNote.append(a);output.append(partsNote);
+  }
+  if(values.wireProcess==="fcaw"){
+    const polarityNote=node("p","");
+    const a=node("a","Полярность NO GAS: что проверить перед сваркой ↗");
+    a.href="/praktika/polyarnost-poroshkovoy-provoloki-bez-gaza/";
+    polarityNote.append(a);output.append(polarityNote);
+  }
 }
 
 function setupConsumable(){
