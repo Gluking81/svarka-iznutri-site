@@ -20,7 +20,7 @@ const VDS_CATEGORIES=Object.freeze({
  materials:"https://vdsperm.ru/esab/cat/svarochnye-materialy/"
 });
 const safeNumber=x=>Number.isFinite(Number(x))&&Number(x)>0&&Number(x)<=100000;
-export function estimatePurchasableOptions({metal,wireProcess,wireDiameter="any",consumableKg}){
+export function estimatePurchasableOptions({metal,wireProcess,wireDiameter="any",spoolSize="any",consumableKg}){
  if(!safeNumber(consumableKg))return {valid:false,items:[],notice:"Сначала введите корректную геометрию шва и получите положительный расчёт расхода."};
  if(!["mig","fcaw","tig"].includes(wireProcess))return {valid:false,items:[],notice:"Укажите процесс сварки, чтобы подобрать правильный тип расходника."};
  if(wireProcess==="fcaw"&&metal!=="steel")
@@ -31,9 +31,9 @@ export function estimatePurchasableOptions({metal,wireProcess,wireDiameter="any"
   return {valid:true,items:[],notice:"Для нержавейки сначала подтвердите марку (например, 304, 316, 321) и классификацию присадки. Стальную Св-08Г2С или ER5356 предлагать нельзя.",category:VDS_CATEGORIES.wire,shop:SHOP};
  if(!["steel","aluminum"].includes(metal))
   return {valid:true,items:[],notice:"Для этого металла нет подтверждённых моделей присадки.",category:VDS_CATEGORIES.materials,shop:SHOP};
- const filtered=WIRE_PURCHASE_CATALOG.filter(x=>x.metal===metal&&x.process===wireProcess&&(wireDiameter==="any"||String(x.diameterMm)===wireDiameter));
+ const filtered=WIRE_PURCHASE_CATALOG.filter(x=>x.metal===metal&&x.process===wireProcess&&(wireDiameter==="any"||String(x.diameterMm)===wireDiameter)&&(spoolSize==="any"||x.spool===spoolSize));
  const items=filtered.map(x=>({...x,packs:Math.ceil(Number(consumableKg)/x.packKg)}))
   .sort((a,b)=>a.packKg-b.packKg||a.brand.localeCompare(b.brand,"ru"));
- const caution=filtered.length===0?"?????? ???????????????????? ???????????????? ?????? ?????????????????????? ???????????????? ???????????????? ?? ????????????????. ???????????????? ?????????????????????????? ???? ???????????????????? ?? ?????????????????? ?????????????????????? ??????.":metal==="aluminum"?"ER5356 показана только как пример марки: проверьте совместимость с вашим алюминиевым сплавом.":"Сверьте присадку, защиту, полярность, диаметр и посадочный размер катушки по инструкции.";
+ const caution=filtered.length===0?"В текущем списке нет проверенной катушки такого диаметра и типа. Проверьте руководство аппарата, посадку и каталог производителя.":metal==="aluminum"?"ER5356 — вариант только для совместимых алюминиевых сплавов: подтвердите марку и систему подачи.":"Сверьте тип проволоки, газ, полярность, диаметр и посадку катушки с инструкциями производителя.";
  return {valid:true,items,notice:caution,category:metal==="aluminum"?VDS_CATEGORIES.materials:VDS_CATEGORIES.wire,shop:SHOP};
 }

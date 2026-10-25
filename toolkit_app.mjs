@@ -119,6 +119,10 @@ function renderWirePurchaseOptions(values,consumption,output){
   const note=node("p","Количество упаковок — только арифметика по введённому расходу; оно не учитывает размер катушки аппарата, реальные потери и минимальную поставку. Цена и остатки не проверяются.");
   note.className="tool-vds-note";block.append(note);
   output.append(block);
+  const guide=node("p","");
+  const guideLink=node("a","D100 или D200: как проверить совместимость катушки ↗");
+  guideLink.href="/rashodka/katushka-d100-ili-d200/";
+  guide.append(guideLink);output.append(guide);
 }
 
 function setupConsumable(){
