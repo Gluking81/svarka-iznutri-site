@@ -1,0 +1,59 @@
+/* E29 home visual system. Preserves the existing HTML, media and no-JS navigation. */
+.hero-editorial-layout{padding-top:clamp(42px,5.2vw,74px);padding-bottom:43px}
+.hero-editorial-copy h1{max-width:670px}
+.editorial-hero-intro{max-width:550px}
+.editorial-actions .editorial-primary,.editorial-actions .editorial-secondary{border-radius:10px;min-height:56px;box-shadow:0 4px 0 #07111540}
+.editorial-actions .editorial-primary{background:#eb9156;border-color:#eb9156!important;color:#152126!important}
+.editorial-actions .editorial-primary:hover{background:#ffb47c;border-color:#ffb47c!important}
+.editorial-actions a:focus-visible,.editorial-product:focus-visible,.editorial-detail:focus-visible,.editorial-feature-main:focus-visible,.editorial-small-feature:focus-visible,.editorial-category:focus-visible{outline:3px solid #ee9b63;outline-offset:4px}
+.editorial-product{border-radius:16px;box-shadow:13px 17px 0 #0710147a}
+.editorial-photo-title{background:#15262be8}
+.editorial-photo-counter{border-radius:999px}
+.editorial-detail{border-radius:11px}
+.editorial-principles{padding-bottom:19px}
+.editorial-principles span{line-height:1.4}
+.task-finder{background:linear-gradient(160deg,#e5efeb 0%,#f7f8f5 76%);border-top:1px solid #bfccc5}
+.task-finder .task-eyebrow{color:#82441f}
+.task-finder .task-tile{border-radius:14px;border-top-width:4px;box-shadow:0 5px 14px #15342d0a;transition:transform .2s,box-shadow .2s,border-color .2s}
+.task-finder .task-tile:first-child{background:#1b393e;border-color:#1b393e;border-top-color:#e6945e;color:#f9f8f3}
+.task-finder .task-tile:first-child small{color:#f8c195}
+.task-finder .task-tile:first-child span{color:#d0e0df}
+.task-finder .task-tile:first-child b{color:#fac08d}
+.task-finder .task-tile:nth-child(2){border-top-color:#bc6e39}
+.task-finder .task-tile:nth-child(3){border-top-color:#607e74}
+.task-finder .task-tile:nth-child(4){border-top-color:#507c94}
+.task-finder .task-tile b{display:flex;align-items:center;justify-content:center;width:27px;height:27px;border-radius:50%;background:#edf2ee}
+.task-finder .task-tile:first-child b{background:#34545a}
+.task-finder .task-search{border-radius:10px;min-height:48px}
+.editorial-feature{padding-top:clamp(40px,5vw,74px)}
+.editorial-heading{gap:30px}
+.editorial-feature-main{border-radius:16px;isolation:isolate}
+.editorial-feature-main:after{background:linear-gradient(0deg,#0b1919f6 0%,#122422d6 43%,#192a1a10 89%)}
+.editorial-feature-main img{object-position:54% 41%}
+.editorial-feature-overlay strong{max-width:590px;line-height:1.08}
+.editorial-small-feature{border-radius:13px}
+.editorial-small-feature .editorial-small-body>span{line-height:1.55}
+.editorial-categories{background:linear-gradient(180deg,#e9f0ed,#f0f2ef)}
+.editorial-category{border-radius:13px;box-shadow:0 4px 18px #20342f0a}
+.editorial-category:hover{box-shadow:0 13px 24px #20342f18}
+.editorial-feature-link{min-height:36px}
+#task-finder-heading,#feature-heading,#categories-heading{scroll-margin-top:112px}
+@media(max-width:900px){.editorial-feature-grid{gap:13px}.editorial-feature-side{gap:13px}}
+@media(max-width:650px){
+ .hero-editorial-layout{padding-top:36px;padding-bottom:28px;gap:23px}
+ .hero-editorial-copy h1{margin:17px 0 20px;line-height:1.06}
+ .editorial-actions{gap:9px}
+ .editorial-actions a{min-height:50px;padding:10px 14px;font-size:.9rem}
+ .editorial-product{min-height:325px;box-shadow:7px 8px 0 #07101466}
+ .editorial-product img{padding:12px 12px 103px}
+ .editorial-principles{padding-bottom:11px}
+ .task-finder{padding:29px 0 38px}
+ .task-finder .task-grid{gap:10px}
+ .task-finder .task-tile{min-height:157px;padding:15px 13px}
+ .editorial-feature-main{min-height:390px}
+ .editorial-small-feature{min-height:175px}
+ .editorial-small-body{min-height:175px}
+ .editorial-category{min-height:150px}
+}
+@media(max-width:420px){.editorial-actions a{width:100%}.task-finder .task-search{width:100%}.editorial-small-feature .editorial-small-body{padding:13px}}
+@media(prefers-reduced-motion:reduce){.task-finder .task-tile,.editorial-actions a,.editorial-product,.editorial-category{transition:none!important}}
