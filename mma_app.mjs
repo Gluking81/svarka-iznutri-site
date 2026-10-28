@@ -53,13 +53,17 @@ function renderCatalog(){
     card.append(el("p",item.detail));
     const note=item.min===null?"Ток: нет проверенного диапазона для артикула":("Ток: "+item.min+"–"+item.max+" А, по карточке артикула");
     card.append(el("p",note,item.min===null?"warning":"note"));
+    const sellerStatus=item.ozonSellerSnapshot?.exactOfferMatch
+      ?"Ozon Seller ВДС: точная привязка артикула найдена 28.10.2026. Это не подтверждение цены или наличия."
+      :"Ozon Seller ВДС: 28.10.2026 точной привязки артикула не найдено. Это не означает снятия электрода с производства.";
+    card.append(el("p",sellerStatus,"result-meta"));
     const link=el("a","Описание товара у ВДС ↗");
     link.href=item.url;link.target="_blank";link.rel="nofollow sponsored noopener noreferrer";
     card.append(link);
     if(item.ozonMatch?.sellerVerified && item.ozonMatch?.brandDiameterPackVerified){
       const ozon=el("a","Ozon: карточка у продавца ВДС ↗");ozon.href=item.ozonMatch.url;
       ozon.rel="nofollow sponsored noopener noreferrer";ozon.target="_blank";
-      card.append(ozon,el("p","На дату проверки совпали продавец, марка, диаметр и масса пачки. Внутренний артикул производителя в доступном описании Ozon не подтверждён.","result-meta"));
+      card.append(ozon,el("p","В Seller API подтверждён артикул продавца и привязка к SKU этой карточки. Заводской артикул в публичном описании Ozon отдельно не показан; наличие не гарантировано.","result-meta"));
     }
     wrap.append(card);
   }
@@ -120,7 +124,7 @@ function renderConsumption(){
         if(matching?.ozonMatch?.sellerVerified && matching.ozonMatch?.brandDiameterPackVerified){
           const ozon=el("a","Посмотреть на Ozon у продавца ВДС ↗");ozon.href=matching.ozonMatch.url;
           ozon.target="_blank";ozon.rel="nofollow sponsored noopener noreferrer";
-          card.append(ozon,el("p","В карточке Ozon подтверждены продавец, марка, диаметр и вес; точный внутренний артикул "+option.sku+" пока не подтверждён.","result-meta"));
+          card.append(ozon,el("p","Seller API ВДС сопоставил артикул продавца "+option.sku+" с SKU этой карточки Ozon; заводской код в публичном описании отдельно не показан. Наличие не гарантировано.","result-meta"));
         }
         container.append(card);
       }

@@ -12,8 +12,10 @@ const entries = [
  {id:"vds-ok46r-20",name:"ESAB OK 46.00 Р",sku:"4600202WZ0",diameter:2,length:300,packKg:1,min:50,max:70,coating:"Рутилово-целлюлозное",detail:"Меньший диаметр; режим по паспорту не отменяет отдельной проверки тонкого металла и вида соединения.",depositedKgPerKg:0.60,sticksPerKgDeposit:172,depositionEvidence:"КПД наплавки 60%; 172 электрода на 1 кг наплавленного металла."},
  {id:"vds-ok46r-40",name:"ESAB OK 46.00 Р",sku:"4600404AE0",diameter:4,length:450,packKg:6.6,min:100,max:200,coating:"Рутилово-целлюлозное",detail:"Пачка 6,6 кг для более крупной работы, а не автоматический выбор для стенки 3–4 мм.",depositedKgPerKg:0.58,sticksPerKgDeposit:null,depositionEvidence:"КПД наплавки 58% по карточке ВДС. Количество электродов на килограмм наплавки НЕ выводим: в карточке 24 шт., в отдельной таблице ESAB для 4,0×450 мм — 33 шт.; требуется сверка оригинального паспорта партии."}
 ];
+// E25 dated seller catalog snapshot: exact offer_id matches, not stock or a public Ozon URL.
+const sellerOfferMatches=new Set(["4595303WE0","4600202WZ0","4600253WZ0","4600303WE2","4600303WZ0","4600404AE0"]);
 export const VDS_PRODUCTS=Object.freeze(entries.map(p=>Object.freeze({
- ...p,process:"MMA, обычная сталь",url:"https://vdsperm.ru/esab/show/"+p.sku+"/",
+ ...p,ozonSellerSnapshot:Object.freeze({exactOfferMatch:sellerOfferMatches.has(p.sku),checkedAt:"2026-10-28"}),process:"MMA, обычная сталь",url:"https://vdsperm.ru/esab/show/"+p.sku+"/",
  evidence:p.min===null?("По карточке ВДС: Ø"+p.diameter+", пачка "+p.packKg+" кг. Нет паспортного диапазона тока."):("По карточке ВДС: "+p.min+"–"+p.max+" А, Ø"+p.diameter+", пачка "+p.packKg+" кг."),
  perKgDeposited:p.sticksPerKgDeposit,perKgLabel:p.sticksPerKgDeposit?String(p.sticksPerKgDeposit)+" шт. на 1 кг наплавленного металла":null
 })));
