@@ -1,0 +1,14 @@
+/* E28: buyer-first wire diameter comparison; scoped to one article. */
+.wire-e28-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0 14px}
+.wire-e28-card{min-width:0;padding:19px 20px 16px;border:1px solid #cfdcd6;border-top:4px solid #b95e2e;background:#f7faf8;border-radius:9px}
+.wire-e28-card:nth-child(2){border-top-color:#35545a}
+.wire-e28-tag{font-size:.67rem;letter-spacing:.13em;font-weight:850;color:#a34c24}
+.wire-e28-card h3{margin:12px 0 9px!important;font-size:1.35rem!important;letter-spacing:-.03em;line-height:1.15}
+.wire-e28-card p{margin:0 0 11px;line-height:1.6!important;font-size:.95rem!important}
+.wire-e28-card .wire-e28-note{margin-bottom:0;color:#665a54;font-weight:750;font-size:.84rem!important}
+.wire-reader-journey .wire-e28-evidence{font-size:.89rem!important;line-height:1.6!important;color:#4e6063;margin:0 0 18px}
+.wire-e28-fact{border-left:4px solid #bf6a37;background:#f2f4f1;padding:15px 20px;margin:0 0 24px}
+.wire-e28-fact strong{display:block;font-size:1rem}
+.wire-e28-fact p{font-size:.96rem!important;line-height:1.65!important;margin:8px 0}
+.wire-e28-fact a:focus-visible,.wire-e28-evidence a:focus-visible{outline:3px solid #ca6c38;outline-offset:3px}
+@media(max-width:680px){.wire-e28-compare{grid-template-columns:1fr;gap:10px}.wire-e28-card{padding:16px}.wire-e28-fact{padding:13px 15px}}
