@@ -73,3 +73,6 @@
 .article-detail .mma-article-bridge__link{display:inline-block;padding:11px 14px;background:#23414a;color:#fff!important;border-radius:5px;text-decoration:none;font-weight:700}
 .article-detail .mma-article-bridge__link:hover,.article-detail .mma-article-bridge__link:focus-visible{background:#a65328}
 @media(max-width:500px){.article-detail .mma-article-bridge{padding:16px 15px}}
+
+/* E24 practical crosslinks */
+.article-detail .mma-e24-related{display:flex;gap:11px;flex-wrap:wrap;padding:12px 15px;margin:18px 0;background:#edf3f1;border:1px solid #cbd6d3;color:#263d42}.article-detail .mma-e24-related strong{width:100%}.article-detail .mma-e24-related a{color:#904d26;font-weight:700}.article-detail .mma-e24-crosslink{border-left:3px solid #be693b;padding:8px 12px;background:#edf3f1}.article-detail .mma-e24-crosslink a{font-weight:700;color:#914923}
