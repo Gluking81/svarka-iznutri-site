@@ -59,10 +59,12 @@ function renderCatalog(){
     card.append(el("p",sellerStatus,"result-meta"));
     const link=el("a","Описание товара у ВДС ↗");
     link.href=item.url;link.target="_blank";link.rel="nofollow sponsored noopener noreferrer";
+    link.dataset.track="product_click";link.dataset.productSource="vds";
     card.append(link);
     if(item.ozonMatch?.sellerVerified && item.ozonMatch?.brandDiameterPackVerified){
       const ozon=el("a","Ozon: карточка у продавца ВДС ↗");ozon.href=item.ozonMatch.url;
       ozon.rel="nofollow sponsored noopener noreferrer";ozon.target="_blank";
+      ozon.dataset.track="product_click";ozon.dataset.productSource="ozon";
       card.append(ozon,el("p","В Seller API подтверждён артикул продавца и привязка к SKU этой карточки. Заводской артикул в публичном описании Ozon отдельно не показан; наличие не гарантировано.","result-meta"));
     }
     wrap.append(card);
@@ -119,11 +121,12 @@ function renderConsumption(){
           note(card,option.reason,true);
         }
         if(option.id===purchase.selectedId)card.classList.add("purchase-selected");
-        const a=el("a","Посмотреть артикул в каталоге ВДС ↗");a.href=option.url;a.rel="nofollow sponsored noopener noreferrer";a.target="_blank";card.append(a);
+        const a=el("a","Посмотреть артикул в каталоге ВДС ↗");a.href=option.url;a.rel="nofollow sponsored noopener noreferrer";a.target="_blank";a.dataset.track="product_click";a.dataset.productSource="vds";card.append(a);
         const matching=VDS_PRODUCTS.find(x=>x.id===option.id);
         if(matching?.ozonMatch?.sellerVerified && matching.ozonMatch?.brandDiameterPackVerified){
           const ozon=el("a","Посмотреть на Ozon у продавца ВДС ↗");ozon.href=matching.ozonMatch.url;
           ozon.target="_blank";ozon.rel="nofollow sponsored noopener noreferrer";
+          ozon.dataset.track="product_click";ozon.dataset.productSource="ozon";
           card.append(ozon,el("p","Seller API ВДС сопоставил артикул продавца "+option.sku+" с SKU этой карточки Ozon; заводской код в публичном описании отдельно не показан. Наличие не гарантировано.","result-meta"));
         }
         container.append(card);

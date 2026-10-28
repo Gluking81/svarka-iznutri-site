@@ -53,12 +53,13 @@
     loadGoogle();
   }
   const track = (action, detail) => {
-    if (!activated || !/^(telegram_click|article_open|tool_submit)$/.test(action)) return;
+    if (!activated || !/^(telegram_click|article_open|tool_submit|product_click)$/.test(action)) return;
+    const safeDetail = /^(process_selection|wire_consumption|torch_checklist|mma_selection|mma_defect|mma_consumption|mma_ozon|mma_vds)$/.test(String(detail)) ? detail : "";
     if (yOk && typeof window.ym === "function") {
-      window.ym(yid, "reachGoal", action);
+      window.ym(yid, "reachGoal", action, safeDetail ? { tool_name:safeDetail } : {});
     }
     if (gaOk && typeof window.gtag === "function") {
-      window.gtag("event", action, detail ? { tool_name:detail } : {});
+      window.gtag("event", action, safeDetail ? { tool_name:safeDetail } : {});
     }
   };
   function init() {
@@ -84,8 +85,9 @@
       if (!link) return;
       const action = link.dataset.track;
       if (action === "telegram_click" || action === "article_open") track(action);
+      else if (action === "product_click") track(action, link.dataset.productSource === "ozon" ? "mma_ozon" : "mma_vds");
     }, { capture:true });
-    for (const [formId, name] of [["tool-process","process_selection"],["tool-consumable","wire_consumption"],["torch-check-form","torch_checklist"]]) {
+    for (const [formId, name] of [["tool-process","process_selection"],["tool-consumable","wire_consumption"],["torch-check-form","torch_checklist"],["mma-selection","mma_selection"],["mma-defect","mma_defect"],["mma-consumption","mma_consumption"]]) {
       document.getElementById(formId)?.addEventListener("submit", () => track("tool_submit",name));
     }
   }
