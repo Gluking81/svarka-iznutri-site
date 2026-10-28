@@ -18,3 +18,10 @@
 .pagefind-ui__result-link{color:#9d461f}
 @media(max-width:860px){.search-layout{grid-template-columns:1fr;gap:18px}.search-box-section{padding:20px;min-height:300px}}
 @media(max-width:500px){.search-layout{margin-top:30px}.search-main .content-page>h1{font-size:2.25rem}.search-main .page-intro{font-size:1rem}.search-box-section{padding:15px}}
+
+
+/* E23 — direct access to practical tools beside Pagefind results */
+.search-tool-guide{margin-top:22px;padding:16px;background:#293d42;border:1px solid #617b7e}
+.search-tool-guide strong{display:block;color:#fff;margin-bottom:7px}
+.search-tool-guide p{font-size:.85rem;margin:0 0 12px;color:#c6d1cf}
+.search-tool-guide a{color:#ffcdad;font-weight:750;text-decoration:underline;text-underline-offset:3px}

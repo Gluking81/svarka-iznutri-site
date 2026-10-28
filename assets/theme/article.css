@@ -63,3 +63,13 @@
 .article-detail .guide-compare-table thead th{background:#e1e8e5;color:#263639;font-weight:800}
 .article-detail .guide-compare-table tbody th{background:#f1f5f2;font-weight:700}
 .article-detail .guide-compare-table tbody tr:nth-child(even) td{background:#f7f9f7}
+
+
+/* E23 — contextual MMA article bridge */
+.article-detail .mma-article-bridge{margin:22px 0 28px;padding:21px 23px;border:1px solid #b9c9c6;border-left:5px solid #c66d35;background:#f1f5f2;border-radius:7px;color:#1a2a2c}
+.article-detail .mma-article-bridge h3{font-size:1.25rem;line-height:1.25;margin:8px 0 9px;color:#183036}
+.article-detail .mma-article-bridge p{margin:0 0 13px;color:#344b4b;line-height:1.6}
+.article-detail .mma-article-bridge__eyebrow{display:block;font-size:.72rem;letter-spacing:.095em;font-weight:800;color:#935021}
+.article-detail .mma-article-bridge__link{display:inline-block;padding:11px 14px;background:#23414a;color:#fff!important;border-radius:5px;text-decoration:none;font-weight:700}
+.article-detail .mma-article-bridge__link:hover,.article-detail .mma-article-bridge__link:focus-visible{background:#a65328}
+@media(max-width:500px){.article-detail .mma-article-bridge{padding:16px 15px}}

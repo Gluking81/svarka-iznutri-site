@@ -5,3 +5,15 @@
 
 .mma-page{box-sizing:border-box;width:min(1150px,calc(100% - 36px));margin:0 auto;padding:24px 0 42px;--bg:#0f171c;--panel:#1a2931;--panel2:#21343d;--edge:#3c5662;--ink:#eff3f4;--muted:#b9cbd2;--orange:#f3a36a;--warm:#ffd5ac;--green:#a8d4bc;--danger:#ffd0bd;--focus:#ffdd8c;color:var(--ink);}
 .mma-page{background:linear-gradient(180deg,#102028,#17242c);border-radius:12px;padding:22px max(12px,3%);}
+
+
+/* E23 — small Pagefind editorial summary and reciprocal article links */
+.mma-page .mma-search-summary{margin:6px 0 20px;padding:13px 17px;border:1px solid #496572;background:#142830;border-radius:8px}
+.mma-page .mma-search-summary h2{font-size:1rem;margin:0 0 6px;color:#fac09a}
+.mma-page .mma-search-summary p{margin:0;font-size:.9rem;color:#d2dfe2;line-height:1.55}
+.mma-page .mma-editorial-related{margin:30px 0 18px;padding:19px;border:1px solid #52717b;border-radius:9px;background:#182f38}
+.mma-page .mma-editorial-related h2{margin:0 0 9px}
+.mma-page .mma-editorial-related p{color:#cbdadd}
+.mma-page .mma-editorial-related__links{display:flex;gap:12px;flex-wrap:wrap}
+.mma-page .mma-editorial-related__links a{display:inline-block;border:1px solid #829ca5;padding:9px 12px;color:#ffd0ae;text-decoration:underline;border-radius:6px;font-weight:600}
+.mma-page .mma-editorial-related__links a:focus-visible{outline:3px solid #ffdd8c;outline-offset:2px}
