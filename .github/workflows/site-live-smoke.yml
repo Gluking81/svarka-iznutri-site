@@ -1,4 +1,4 @@
-name: Site live smoke (E30)
+name: Site live smoke (E30-E31)
 
 on:
   push:
@@ -22,7 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Verify live HTML, Sitemap, Pagefind and notify IndexNow for E30
+      - name: Verify live HTML, Sitemap, Pagefind and notify IndexNow for E30-E31
+        env:
+          E31_NOTIFY: "${{ github.event_name == 'push' && github.event.head_commit.message == 'QA: E31 post-deploy live smoke and IndexNow once' }}"
         shell: bash
         run: |
           python3 - <<'PY'
@@ -96,7 +98,40 @@ jobs:
           print("PUBLIC_SITE_E30_SMOKE_PASS: 200, article, links, canonical, "
                 f"{len(locations)} sitemap URLs, robots, Pagefind {lang['page_count']} pages")
 
-          # Notify this known updated E30 URL only on explicit workflow push/dispatch.
+
+          NEW_ROUTE = "/praktika/kak-proverit-svarochnyj-apparat-pri-poluchenii/"
+          new_html = fetch(NEW_ROUTE).decode("utf-8")
+          new_article = Article()
+          new_article.feed(new_html)
+          assert "<h1>Как проверить сварочный аппарат при получении:" in new_html
+          assert new_article.canonicals == [HOST + NEW_ROUTE]
+          assert len(new_article.ids) == len(set(new_article.ids)), "Duplicate E31 HTML IDs"
+          assert all(x in new_html for x in ("7233823", "7233825", "ESAB", "Lincoln Electric"))
+          assert not any("noindex" in x.lower() for x in new_article.robots)
+          assert "/sravneniya/kak-sravnit-dva-svarochnyh-poluavtomata/" in new_article.hrefs
+          assert HOST + NEW_ROUTE in locations and len(locations) >= 40
+          assert lang["page_count"] >= 28, lang
+          print("PUBLIC_SITE_E31_SMOKE_PASS: HTTP 200, canonical, model numbers, "
+                f"40+ Sitemap URLs, Pagefind {lang['page_count']} pages", flush=True)
+
+          # Exactly once on this dedicated E31 workflow-update commit.
+          if os.getenv("E31_NOTIFY") == "true":
+              key = "b41ce38b4ad1b11431053bf496f5b131"
+              endpoint = "https://yandex.com/indexnow?" + urllib.parse.urlencode({
+                  "url": HOST + NEW_ROUTE, "key": key})
+              request = urllib.request.Request(endpoint, headers={
+                  "User-Agent": "Svarka-Iznutri-Production-Smoke/1.0"})
+              try:
+                  with urllib.request.urlopen(request, timeout=25) as response:
+                      status = response.status
+              except urllib.error.HTTPError as err:
+                  status = err.code
+              print(f"E31_INDEXNOW_HTTP_STATUS={status}", flush=True)
+              assert status in (200, 202), "E31 IndexNow rejected"
+              print("E31_INDEXNOW_ACCEPTED" if status == 200 else
+                    "E31_INDEXNOW_KEY_VERIFICATION_PENDING", flush=True)
+
+          # Notify this known updated E30 URL only on explicit workflow dispatch.
           if os.getenv("GITHUB_EVENT_NAME") == "workflow_dispatch":
               key = "b41ce38b4ad1b11431053bf496f5b131"
               url = "https://yandex.com/indexnow?" + urllib.parse.urlencode({
@@ -113,7 +148,7 @@ jobs:
               print("INDEXNOW_ACCEPTED" if status == 200 else "INDEXNOW_KEY_VERIFICATION_PENDING")
           PY
 
-      - name: Browser responsive smoke on live E30
+      - name: Browser responsive smoke on live E30 and E31
         shell: bash
         run: |
           python3 -m pip install --quiet --disable-pip-version-check playwright
@@ -142,7 +177,15 @@ jobs:
                   assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 2"), width
                   assert not errors, (width, errors)
                   print("E30_LIVE_BROWSER_PASS", width, flush=True)
+                  response = page.goto("https://ipbelova.tech/praktika/kak-proverit-svarochnyj-apparat-pri-poluchenii/",
+                                       wait_until="domcontentloaded", timeout=60000)
+                  assert response and response.status == 200, width
+                  assert page.locator("article.prose h2").count() >= 7, width
+                  assert page.locator("h1").is_visible(), width
+                  assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 2"), width
+                  assert not errors, (width, errors)
+                  print("E31_LIVE_BROWSER_PASS", width, flush=True)
                   context.close()
               browser.close()
-          print("E30_RESPONSIVE_LIVE_QA_PASS", flush=True)
+          print("E30_E31_RESPONSIVE_LIVE_QA_PASS", flush=True)
           PY
