@@ -97,7 +97,7 @@ jobs:
                 f"{len(locations)} sitemap URLs, robots, Pagefind {lang['page_count']} pages")
 
           # Notify this known updated E30 URL only on explicit workflow push/dispatch.
-          if os.getenv("GITHUB_EVENT_NAME") in ("push", "workflow_dispatch"):
+          if os.getenv("GITHUB_EVENT_NAME") == "workflow_dispatch":
               key = "b41ce38b4ad1b11431053bf496f5b131"
               url = "https://yandex.com/indexnow?" + urllib.parse.urlencode({
                   "url": HOST + ROUTE, "key": key})
@@ -111,4 +111,38 @@ jobs:
               print(f"E30_INDEXNOW_HTTP_STATUS={status}")
               assert status in (200, 202), "IndexNow rejected"
               print("INDEXNOW_ACCEPTED" if status == 200 else "INDEXNOW_KEY_VERIFICATION_PENDING")
+          PY
+
+      - name: Browser responsive smoke on live E30
+        shell: bash
+        run: |
+          python3 -m pip install --quiet --disable-pip-version-check playwright
+          python3 - <<'PY'
+          import shutil, subprocess, sys
+          from playwright.sync_api import sync_playwright
+
+          with sync_playwright() as p:
+              chrome = shutil.which("google-chrome") or shutil.which("chromium")
+              if not chrome:
+                  subprocess.run([sys.executable, "-m", "playwright", "install", "chromium"], check=True)
+              browser = p.chromium.launch(executable_path=chrome, headless=True) if chrome else p.chromium.launch(headless=True)
+              for width in (320, 390, 768, 1440):
+                  context = browser.new_context(viewport={"width":width,"height":850},
+                                                reduced_motion="reduce")
+                  page = context.new_page()
+                  errors = []
+                  page.on("pageerror", lambda err: errors.append(str(err)))
+                  response = page.goto("https://ipbelova.tech/sravneniya/poroshkovaya-ili-co2/",
+                                       wait_until="domcontentloaded", timeout=60000)
+                  assert response and response.status == 200, width
+                  assert page.locator("#e30-processes").is_visible(), width
+                  assert page.locator("#e30-checklist").count() == 1, width
+                  assert page.locator("#e30-faq").count() == 1, width
+                  assert page.locator(".media-figure img").count() >= 3, width
+                  assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 2"), width
+                  assert not errors, (width, errors)
+                  print("E30_LIVE_BROWSER_PASS", width, flush=True)
+                  context.close()
+              browser.close()
+          print("E30_RESPONSIVE_LIVE_QA_PASS", flush=True)
           PY
